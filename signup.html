@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Signup Page</title>
+    <style>
+#sign {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+      .signup-box {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px #ccc;
+        padding: 20px;
+        width: 400px;
+        margin: 50px auto;
+      }
+      h2 {
+        margin-top: 0;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="signup-box">
+      <h2>Signup</h2>
+      
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <button id="sign" onclick="createUser();window.location.replace('/login')">Sign up</button>
+
+      
+    </div>
+<script>
+function createUser() {
+  // Get the username and password values from the specified input elements
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  // Define the request headers and data
+  const url = 'https://api.penpencil.xyz/v1/users/students-public/5b09189f7285894d9130ccd0';
+  const headers = {
+    'Host': 'api.penpencil.xyz',
+    'Content-Length': '125',
+    'Accept': 'application/json, text/plain, */*',
+    'Origin': 'file://',
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 5.1.1; HD1910 Build/LMY48Z) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/39.0.0.0 Mobile Safari/537.36',
+    'Authorization': 'Bearer undefined',
+    'Client-Type': 'MOBILE',
+    'Content-Type': 'application/json',
+    'Accept-Encoding': 'gzip, deflate',
+    'Accept-Language': 'en-US',
+    'X-Requested-With': 'xyz.penpencil.main'
+  };
+  const data = {
+    'firstName': username,
+    'password': password,
+    'email': username+'@prem.com',
+    'rollNumber': username,
+    'organizationId': '5b09189f7285894d9130ccd0'
+  };
+
+  // Send the POST request using the fetch() function
+  fetch(url, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+alert('Signed Up success. Now login to continue')
+}
+
+</script>
+  </body>
+</html>
